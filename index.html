@@ -22,6 +22,8 @@
                 <ul>
                     <li><a href="#tools" class="nav-link active" data-section="tools">Tools</a></li>
                     <li><a href="#learn" class="nav-link" data-section="learn">Learn</a></li>
+                    <li><a href="#mcp" class="nav-link" data-section="mcp">MCP Servers</a></li>
+                    <li><a href="#admin" class="nav-link" data-section="admin">Admin</a></li>
                 </ul>
             </nav>
         </div>
@@ -106,6 +108,124 @@
             <div class="empty-state" id="learnEmptyState" style="display: none;">
                 <h2>🔍 No resources found</h2>
                 <p>Try adjusting your search or filters</p>
+            </div>
+        </div>
+
+        <!-- MCP Servers Section -->
+        <div id="mcp-section" class="page-section">
+            <div class="learn-header">
+                <h2>🧩 MCP Servers</h2>
+                <p>Curated Model Context Protocol servers you can use with compatible clients</p>
+            </div>
+
+            <!-- MCP Search -->
+            <div class="controls">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="mcpSearchInput" placeholder="Search MCP servers...">
+                </div>
+            </div>
+
+            <!-- MCP Categories -->
+            <div class="categories" id="mcpCategoriesContainer">
+                <div class="category-pill active" data-category="all">All Servers</div>
+            </div>
+
+            <!-- MCP Grid -->
+            <div class="tools-grid" id="mcpGrid"></div>
+
+            <!-- MCP Empty State -->
+            <div class="empty-state" id="mcpEmptyState" style="display: none;">
+                <h2>🔍 No MCP servers found</h2>
+                <p>Try adjusting your search or filters</p>
+            </div>
+        </div>
+
+        <!-- Admin Section -->
+        <div id="admin-section" class="page-section">
+            <div class="learn-header">
+                <h2>🛠️ Admin: Manage Content</h2>
+                <p>Add items to Tools, Learn, or MCP and save back to JSON</p>
+            </div>
+
+            <div class="admin-panel">
+                <div class="admin-controls">
+                    <div class="admin-control">
+                        <label for="adminDatasetSelect">Dataset</label>
+                        <select id="adminDatasetSelect" class="admin-select">
+                            <option value="tools">Tools</option>
+                            <option value="learn">Learning</option>
+                            <option value="mcp">MCP Servers</option>
+                        </select>
+                    </div>
+                    <div class="admin-actions">
+                        <button id="adminOpenBtn" class="admin-button">Open JSON File…</button>
+                        <button id="adminSaveBtn" class="admin-button primary">Save Changes</button>
+                        <button id="adminDownloadBtn" class="admin-button">Download JSON</button>
+                        <span id="adminStatus" class="admin-status"></span>
+                    </div>
+                </div>
+
+                <form id="adminForm" class="admin-form">
+                    <div class="admin-grid">
+                        <div class="admin-field">
+                            <label for="adminName">Name</label>
+                            <input id="adminName" type="text" class="admin-input" placeholder="Name" required>
+                        </div>
+                        <div class="admin-field">
+                            <label for="adminIcon">Icon (emoji)</label>
+                            <input id="adminIcon" type="text" class="admin-input" placeholder="e.g., ✨" maxlength="4">
+                        </div>
+                        <div class="admin-field">
+                            <label for="adminLink">Link</label>
+                            <input id="adminLink" type="url" class="admin-input" placeholder="https://…">
+                        </div>
+                        <div class="admin-field">
+                            <label for="adminCategory">Category</label>
+                            <input id="adminCategory" type="text" class="admin-input" placeholder="e.g., image-gen">
+                        </div>
+                        <div class="admin-field admin-fields-tools admin-fields-mcp">
+                            <label for="adminPricing">Pricing</label>
+                            <select id="adminPricing" class="admin-select">
+                                <option value="free">free</option>
+                                <option value="freemium">freemium</option>
+                                <option value="paid">paid</option>
+                            </select>
+                        </div>
+                        <div class="admin-field admin-fields-tools">
+                            <label for="adminPricingNote">Pricing Note</label>
+                            <input id="adminPricingNote" type="text" class="admin-input" placeholder="Optional details">
+                        </div>
+                        <div class="admin-field admin-fields-tools">
+                            <label for="adminFavourite">Personal Favourite</label>
+                            <select id="adminFavourite" class="admin-select">
+                                <option value="no">no</option>
+                                <option value="yes">yes</option>
+                            </select>
+                        </div>
+                        <div class="admin-field admin-fields-learn" style="display:none;">
+                            <label for="adminDifficulty">Difficulty</label>
+                            <select id="adminDifficulty" class="admin-select">
+                                <option value="beginner">beginner</option>
+                                <option value="intermediate">intermediate</option>
+                                <option value="advanced">advanced</option>
+                            </select>
+                        </div>
+                        <div class="admin-field admin-fields-learn" style="display:none;">
+                            <label for="adminType">Type</label>
+                            <input id="adminType" type="text" class="admin-input" placeholder="course, article, video…">
+                        </div>
+                        <div class="admin-field admin-span-2">
+                            <label for="adminDescription">Description</label>
+                            <textarea id="adminDescription" class="admin-textarea" rows="3" placeholder="Short description"></textarea>
+                        </div>
+                    </div>
+                    <div class="admin-actions">
+                        <button type="submit" class="admin-button primary">Add Item</button>
+                    </div>
+                </form>
+
+                <div class="admin-preview" id="adminPreview"></div>
             </div>
         </div>
     </div>

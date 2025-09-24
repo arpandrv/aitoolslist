@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Hub - Personal Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background Shapes -->
+    <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+    <div class="bg-shape shape3"></div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <h1>🚀 AI Tools Hub</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#tools" class="nav-link active" data-section="tools">Tools</a></li>
+                    <li><a href="#learn" class="nav-link" data-section="learn">Learn</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Tools Section -->
+        <div id="tools-section" class="page-section active">
+
+        <!-- Search Box -->
+        <div class="controls">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search tools by name or description...">
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="categories" id="categoriesContainer">
+            <div class="category-pill active" data-category="all">All Tools</div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="totalTools">0</div>
+                <div class="stat-label">Total Tools</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="freeTools">0</div>
+                <div class="stat-label">Free Tools</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="categoriesCount">0</div>
+                <div class="stat-label">Categories</div>
+            </div>
+        </div>
+
+        <!-- Personal Favorites Section -->
+        <div class="favorites-section">
+            <h2>⭐ Personal Favorites</h2>
+            <div class="tools-grid" id="favoritesGrid"></div>
+        </div>
+
+        <!-- All Tools Section -->
+        <div class="all-tools-section">
+            <h2>🛠️ All Tools</h2>
+            <div class="tools-grid" id="toolsGrid"></div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <h2>🔍 No tools found</h2>
+            <p>Try adjusting your search or filters</p>
+        </div>
+        </div>
+
+        <!-- Learn Section -->
+        <div id="learn-section" class="page-section">
+            <div class="learn-header">
+                <h2>📚 Learn AI & Data Science</h2>
+                <p>Curated resources to help you master artificial intelligence and data science</p>
+            </div>
+
+            <!-- Learn Search -->
+            <div class="controls">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="learnSearchInput" placeholder="Search learning resources...">
+                </div>
+            </div>
+
+            <!-- Learn Categories -->
+            <div class="categories" id="learnCategoriesContainer">
+                <div class="category-pill active" data-category="all">All Resources</div>
+            </div>
+
+            <!-- Learn Resources Grid -->
+            <div class="learn-grid" id="learnGrid"></div>
+
+            <!-- Learn Empty State -->
+            <div class="empty-state" id="learnEmptyState" style="display: none;">
+                <h2>🔍 No resources found</h2>
+                <p>Try adjusting your search or filters</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

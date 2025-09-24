@@ -1,0 +1,202 @@
+[
+    {
+        "name": "ChatGPT",
+        "icon": "💬",
+        "link": "https://chat.openai.com",
+        "description": "Advanced conversational AI by OpenAI. Great for general chat, coding help, writing, and analysis.",
+        "pricing": "freemium",
+        "pricingNote": "Free tier is quite generous for most users",
+        "category": "multimodal",
+        "personal_favourite": "yes"
+    },
+    {
+        "name": "Claude",
+        "icon": "🤖",
+        "link": "https://claude.ai",
+        "description": "Anthropic's AI assistant. Excellent for detailed analysis, coding, and long-form content.",
+        "pricing": "freemium",
+        "pricingNote": "Free tier available with message limits",
+        "category": "multimodal",
+        "personal_favourite": "yes"
+    },
+    {
+        "name": "Midjourney",
+        "icon": "🎨",
+        "link": "https://midjourney.com",
+        "description": "Leading AI image generation tool. Creates stunning artistic images from text prompts.",
+        "pricing": "paid",
+        "pricingNote": "Subscription required, starting at $10/month",
+        "category": "image-gen",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "DALL-E 3",
+        "icon": "🖼️",
+        "link": "https://openai.com/dall-e-3",
+        "description": "OpenAI's image generation model. Integrated with ChatGPT for seamless creation.",
+        "pricing": "freemium",
+        "pricingNote": "Available with ChatGPT Plus subscription",
+        "category": "image-gen",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "Stable Diffusion",
+        "icon": "🎭",
+        "link": "https://stability.ai",
+        "description": "Open-source image generation model. Can run locally or via various web UIs.",
+        "pricing": "free",
+        "pricingNote": "Completely free if run locally",
+        "category": "image-gen",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "RunwayML",
+        "icon": "🎬",
+        "link": "https://runwayml.com",
+        "description": "AI-powered video generation and editing. Great for content creators.",
+        "pricing": "freemium",
+        "pricingNote": "Limited free credits, then paid",
+        "category": "video-gen",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "Pika Labs",
+        "icon": "📹",
+        "link": "https://pika.art",
+        "description": "Text-to-video generation platform. Create short videos from prompts.",
+        "pricing": "freemium",
+        "pricingNote": "Free tier with watermark",
+        "category": "video-gen",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "ElevenLabs",
+        "icon": "🎙️",
+        "link": "https://elevenlabs.io",
+        "description": "Advanced AI voice synthesis and cloning. Natural-sounding text-to-speech.",
+        "pricing": "freemium",
+        "pricingNote": "Free tier with character limits",
+        "category": "audio-gen",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "Suno AI",
+        "icon": "🎵",
+        "link": "https://suno.ai",
+        "description": "AI music generation. Create full songs with vocals from text prompts.",
+        "pricing": "freemium",
+        "pricingNote": "Free credits daily",
+        "category": "audio-gen",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "GitHub Copilot",
+        "icon": "👨‍💻",
+        "link": "https://github.com/features/copilot",
+        "description": "AI pair programmer. Suggests code and entire functions in your IDE.",
+        "pricing": "paid",
+        "pricingNote": "$10/month, free for students",
+        "category": "code-assist",
+        "personal_favourite": "yes"
+    },
+    {
+        "name": "Cursor",
+        "icon": "⚡",
+        "link": "https://cursor.sh",
+        "description": "AI-first code editor. Built from ground up for AI pair programming.",
+        "pricing": "freemium",
+        "pricingNote": "Free tier available",
+        "category": "code-assist",
+        "personal_favourite": "yes"
+    },
+    {
+        "name": "Perplexity AI",
+        "icon": "🔎",
+        "link": "https://perplexity.ai",
+        "description": "AI-powered search engine. Provides sourced answers to questions.",
+        "pricing": "freemium",
+        "pricingNote": "Free tier is quite useful",
+        "category": "research",
+        "personal_favourite": "yes"
+    },
+    {
+        "name": "Notion AI",
+        "icon": "📝",
+        "link": "https://notion.so/product/ai",
+        "description": "AI writing assistant integrated into Notion. Great for docs and notes.",
+        "pricing": "freemium",
+        "pricingNote": "Add-on to Notion subscription",
+        "category": "productivity",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "Jasper",
+        "icon": "✍️",
+        "link": "https://jasper.ai",
+        "description": "AI content creation platform for marketing copy and blog posts.",
+        "pricing": "paid",
+        "pricingNote": "Professional tool, starts at $49/month",
+        "category": "text-gen",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "Synthesia",
+        "icon": "🎥",
+        "link": "https://synthesia.io",
+        "description": "AI video generation with avatars. Create professional videos without filming.",
+        "pricing": "paid",
+        "pricingNote": "Starts at $30/month",
+        "category": "video-gen",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "Gemini",
+        "icon": "✨",
+        "link": "https://gemini.google.com",
+        "description": "Google's multimodal AI. Integrated with Google Workspace.",
+        "pricing": "freemium",
+        "pricingNote": "Free tier available",
+        "category": "multimodal",
+        "personal_favourite": "yes"
+    },
+    {
+        "name": "Otter.ai",
+        "icon": "📊",
+        "link": "https://otter.ai",
+        "description": "AI meeting transcription and summarization. Great for note-taking.",
+        "pricing": "freemium",
+        "pricingNote": "Free tier with monthly limits",
+        "category": "productivity",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "Hugging Face",
+        "icon": "🤗",
+        "link": "https://huggingface.co",
+        "description": "Open-source AI model hub. Access thousands of models for free.",
+        "pricing": "free",
+        "pricingNote": "Most models free, some compute costs",
+        "category": "multimodal",
+        "personal_favourite": "yes"
+    },
+    {
+        "name": "Replicate",
+        "icon": "🔄",
+        "link": "https://replicate.com",
+        "description": "Run open-source AI models in the cloud via API.",
+        "pricing": "paid",
+        "pricingNote": "Pay per use, very affordable",
+        "category": "multimodal",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "Leonardo.ai",
+        "icon": "🖌️",
+        "link": "https://leonardo.ai",
+        "description": "AI image generation with fine control. Great for game assets and art.",
+        "pricing": "freemium",
+        "pricingNote": "Daily free credits",
+        "category": "image-gen",
+        "personal_favourite": "no"
+    }
+]

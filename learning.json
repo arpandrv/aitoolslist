@@ -1,0 +1,191 @@
+[
+    {
+        "name": "MLU Explain",
+        "icon": "🧠",
+        "link": "https://mlu-explain.github.io/",
+        "description": "Interactive explanations of machine learning concepts with visualizations and code examples.",
+        "category": "machine-learning",
+        "difficulty": "beginner",
+        "type": "interactive"
+    },
+    {
+        "name": "Fast.ai",
+        "icon": "⚡",
+        "link": "https://www.fast.ai/",
+        "description": "Practical deep learning for coders. Free courses that teach you to train neural networks.",
+        "category": "deep-learning",
+        "difficulty": "intermediate",
+        "type": "course"
+    },
+    {
+        "name": "Coursera - Andrew Ng",
+        "icon": "🎓",
+        "link": "https://www.coursera.org/learn/machine-learning",
+        "description": "Machine Learning by Andrew Ng. The gold standard introduction to machine learning.",
+        "category": "machine-learning",
+        "difficulty": "beginner",
+        "type": "course"
+    },
+    {
+        "name": "Deep Learning Specialization",
+        "icon": "🧠",
+        "link": "https://www.coursera.org/specializations/deep-learning",
+        "description": "Complete deep learning specialization covering neural networks, CNNs, RNNs, and more.",
+        "category": "deep-learning",
+        "difficulty": "intermediate",
+        "type": "course"
+    },
+    {
+        "name": "Hugging Face Learn",
+        "icon": "🤗",
+        "link": "https://huggingface.co/learn",
+        "description": "Free courses on transformers, diffusion models, and practical NLP applications.",
+        "category": "nlp",
+        "difficulty": "intermediate",
+        "type": "course"
+    },
+    {
+        "name": "Google AI Education",
+        "icon": "🔍",
+        "link": "https://ai.google/education/",
+        "description": "Google's AI education resources including courses, tutorials, and research papers.",
+        "category": "general-ai",
+        "difficulty": "beginner",
+        "type": "resource"
+    },
+    {
+        "name": "MIT OpenCourseWare",
+        "icon": "🎓",
+        "link": "https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/",
+        "description": "MIT's free course materials on AI, machine learning, and computer science.",
+        "category": "computer-science",
+        "difficulty": "advanced",
+        "type": "course"
+    },
+    {
+        "name": "Stanford CS229",
+        "icon": "🎓",
+        "link": "https://cs229.stanford.edu/",
+        "description": "Machine Learning course by Andrew Ng. Comprehensive mathematical foundations.",
+        "category": "machine-learning",
+        "difficulty": "intermediate",
+        "type": "course"
+    },
+    {
+        "name": "3Blue1Brown Neural Networks",
+        "icon": "📐",
+        "link": "https://www.3blue1brown.com/topics/neural-networks",
+        "description": "Beautiful mathematical visualizations of neural networks and deep learning concepts.",
+        "category": "deep-learning",
+        "difficulty": "intermediate",
+        "type": "video"
+    },
+    {
+        "name": "Kaggle Learn",
+        "icon": "📊",
+        "link": "https://www.kaggle.com/learn",
+        "description": "Free, hands-on courses covering Python, data visualization, machine learning, and more.",
+        "category": "data-science",
+        "difficulty": "beginner",
+        "type": "course"
+    },
+    {
+        "name": "DataCamp",
+        "icon": "📈",
+        "link": "https://www.datacamp.com/",
+        "description": "Interactive data science and machine learning courses with in-browser coding.",
+        "category": "data-science",
+        "difficulty": "beginner",
+        "type": "course"
+    },
+    {
+        "name": "Towards Data Science",
+        "icon": "📝",
+        "link": "https://towardsdatascience.com/",
+        "description": "Medium publication with thousands of articles on data science, ML, and AI.",
+        "category": "general-ai",
+        "difficulty": "intermediate",
+        "type": "blog"
+    },
+    {
+        "name": "Papers with Code",
+        "icon": "📄",
+        "link": "https://paperswithcode.com/",
+        "description": "Latest research papers with code implementations. Stay updated with cutting-edge AI research.",
+        "category": "research",
+        "difficulty": "advanced",
+        "type": "resource"
+    },
+    {
+        "name": "ArXiv AI Papers",
+        "icon": "📚",
+        "link": "https://arxiv.org/list/cs.AI/recent",
+        "description": "Preprint server for AI and computer science research papers.",
+        "category": "research",
+        "difficulty": "advanced",
+        "type": "resource"
+    },
+    {
+        "name": "TensorFlow Tutorials",
+        "icon": "🔧",
+        "link": "https://www.tensorflow.org/tutorials",
+        "description": "Official TensorFlow tutorials covering basics to advanced deep learning applications.",
+        "category": "deep-learning",
+        "difficulty": "intermediate",
+        "type": "tutorial"
+    },
+    {
+        "name": "PyTorch Tutorials",
+        "icon": "🔥",
+        "link": "https://pytorch.org/tutorials/",
+        "description": "Official PyTorch tutorials for deep learning with practical examples.",
+        "category": "deep-learning",
+        "difficulty": "intermediate",
+        "type": "tutorial"
+    },
+    {
+        "name": "Scikit-learn Documentation",
+        "icon": "📊",
+        "link": "https://scikit-learn.org/stable/user_guide.html",
+        "description": "Comprehensive guide to machine learning algorithms and tools in Python.",
+        "category": "machine-learning",
+        "difficulty": "intermediate",
+        "type": "documentation"
+    },
+    {
+        "name": "OpenAI Cookbook",
+        "icon": "🍳",
+        "link": "https://cookbook.openai.com/",
+        "description": "Code examples and guides for working with OpenAI's API and models.",
+        "category": "ai-applications",
+        "difficulty": "intermediate",
+        "type": "tutorial"
+    },
+    {
+        "name": "Google Colab",
+        "icon": "📓",
+        "link": "https://colab.research.google.com/",
+        "description": "Free Jupyter notebooks in the cloud. Perfect for learning and experimentation.",
+        "category": "tools",
+        "difficulty": "beginner",
+        "type": "tool"
+    },
+    {
+        "name": "Jupyter Notebooks",
+        "icon": "📓",
+        "link": "https://jupyter.org/",
+        "description": "Open-source tool for interactive computing and data science.",
+        "category": "tools",
+        "difficulty": "beginner",
+        "type": "tool"
+    },
+    {
+        "name": "Weights & Biases",
+        "icon": "📈",
+        "link": "https://wandb.ai/",
+        "description": "ML experiment tracking, visualization, and collaboration platform.",
+        "category": "tools",
+        "difficulty": "intermediate",
+        "type": "tool"
+    }
+]

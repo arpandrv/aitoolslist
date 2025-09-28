@@ -1,0 +1,48 @@
+[
+    {
+        "name": "Filesystem MCP",
+        "icon": "🗂️",
+        "link": "https://github.com/modelcontextprotocol/servers/tree/main/servers/filesystem",
+        "description": "Access and manage local files via MCP for file read/write and listing.",
+        "category": "local-system",
+        "pricing": "free",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "Git MCP",
+        "icon": "🌿",
+        "link": "https://github.com/modelcontextprotocol/servers/tree/main/servers/git",
+        "description": "Interact with Git repositories through MCP for status, diffs, and operations.",
+        "category": "developer-tools",
+        "pricing": "free",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "OpenAI MCP",
+        "icon": "✨",
+        "link": "https://github.com/modelcontextprotocol/servers/tree/main/servers/openai",
+        "description": "Proxy to OpenAI APIs via MCP, enabling model calls from MCP clients.",
+        "category": "ai-services",
+        "pricing": "paid",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "Google Drive MCP",
+        "icon": "📁",
+        "link": "https://github.com/modelcontextprotocol/servers/tree/main/servers/google-drive",
+        "description": "Browse and manage Google Drive files via MCP with OAuth-based auth.",
+        "category": "cloud-storage",
+        "pricing": "freemium",
+        "personal_favourite": "no"
+    },
+    {
+        "name": "PostgreSQL MCP",
+        "icon": "🐘",
+        "link": "https://github.com/modelcontextprotocol/servers/tree/main/servers/postgres",
+        "description": "Connect to a PostgreSQL database and run queries safely via MCP.",
+        "category": "databases",
+        "pricing": "free",
+        "personal_favourite": "no"
+    }
+]
+

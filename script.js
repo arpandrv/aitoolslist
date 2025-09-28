@@ -4,6 +4,8 @@
 
         let aiTools = []; // Will be loaded from JSON file
         let learningResources = []; // Will be loaded from JSON file
+        let mcpServers = []; // Will be loaded from JSON file
+        let currentDataset = 'tools';
         let currentCategory = 'all';
         let searchTerm = '';
         let currentSection = 'tools'; // 'tools' or 'learn'
@@ -42,14 +44,32 @@
 
         // Initialize the app
         async function init() {
-            await Promise.all([loadToolsData(), loadLearningData()]);
+            await Promise.all([loadToolsData(), loadLearningData(), loadMcpData()]);
             renderCategories();
             renderFavorites();
             renderAllTools();
             renderLearnCategories();
             renderLearningResources();
+            renderMcpCategories();
+            renderMcpServers();
             updateStats();
             setupEventListeners();
+            setupAdmin();
+        }
+
+        // Load MCP servers from JSON file
+        async function loadMcpData() {
+            try {
+                const response = await fetch('mcp.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load MCP servers');
+                }
+                mcpServers = await response.json();
+            } catch (error) {
+                console.error('Error loading MCP servers:', error);
+                const grid = document.getElementById('mcpGrid');
+                grid.innerHTML = '<div style="text-align: center; color: white; padding: 40px;">Error loading MCP servers. Please try refreshing the page.</div>';
+            }
         }
 
         // Get unique categories from tools
@@ -63,7 +83,10 @@
             const container = document.getElementById('categoriesContainer');
             const categories = getCategories();
 
-            // Keep the "All Tools" pill and add others
+            // Clear existing non-ALL pills
+            Array.from(container.querySelectorAll('.category-pill'))
+                .forEach(p => { if (p.dataset.category !== 'all') p.remove(); });
+
             categories.forEach(category => {
                 const pill = document.createElement('div');
                 pill.className = 'category-pill';
@@ -204,13 +227,75 @@
             const container = document.getElementById('learnCategoriesContainer');
             const categories = getLearningCategories();
 
-            // Keep the "All Resources" pill and add others
+            Array.from(container.querySelectorAll('.category-pill'))
+                .forEach(p => { if (p.dataset.category !== 'all') p.remove(); });
+
             categories.forEach(category => {
                 const pill = document.createElement('div');
                 pill.className = 'category-pill';
                 pill.dataset.category = category;
                 pill.textContent = formatCategoryName(category);
                 container.appendChild(pill);
+            });
+        }
+
+        // Get unique MCP categories from servers
+        function getMcpCategories() {
+            const categories = [...new Set(mcpServers.map(server => server.category))];
+            return categories.sort();
+        }
+
+        // Render MCP category pills
+        function renderMcpCategories() {
+            const container = document.getElementById('mcpCategoriesContainer');
+            if (!container) return;
+            const categories = getMcpCategories();
+
+            Array.from(container.querySelectorAll('.category-pill'))
+                .forEach(p => { if (p.dataset.category !== 'all') p.remove(); });
+
+            categories.forEach(category => {
+                const pill = document.createElement('div');
+                pill.className = 'category-pill';
+                pill.dataset.category = category;
+                pill.textContent = formatCategoryName(category);
+                container.appendChild(pill);
+            });
+        }
+
+        // Render MCP servers
+        function renderMcpServers() {
+            const grid = document.getElementById('mcpGrid');
+            const emptyState = document.getElementById('mcpEmptyState');
+            if (!grid || !emptyState) return;
+
+            let filtered = mcpServers;
+
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(server => server.category === currentCategory);
+            }
+
+            if (searchTerm) {
+                filtered = filtered.filter(server =>
+                    server.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    server.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    server.category.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+            }
+
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            } else {
+                emptyState.style.display = 'none';
+            }
+
+            filtered.forEach((server, index) => {
+                const card = createToolCard(server);
+                card.style.animationDelay = `${index * 0.05}s`;
+                grid.appendChild(card);
             });
         }
 
@@ -316,6 +401,10 @@
                     currentCategory = 'all';
                     document.getElementById('searchInput').value = '';
                     document.getElementById('learnSearchInput').value = '';
+                    const mcpSearch = document.getElementById('mcpSearchInput');
+                    if (mcpSearch) mcpSearch.value = '';
+                    const adminStatusEl = document.getElementById('adminStatus');
+                    if (adminStatusEl) adminStatusEl.textContent = '';
 
                     // Reset category pills
                     document.querySelectorAll('.category-pill').forEach(pill => {
@@ -331,6 +420,10 @@
                         renderAllTools();
                     } else if (section === 'learn') {
                         renderLearningResources();
+                    } else if (section === 'mcp') {
+                        renderMcpServers();
+                    } else if (section === 'admin') {
+                        updateAdminPreview();
                     }
                 });
             });
@@ -351,6 +444,17 @@
                     renderLearningResources();
                 }
             });
+
+            // Search functionality for MCP
+            const mcpSearchEl = document.getElementById('mcpSearchInput');
+            if (mcpSearchEl) {
+                mcpSearchEl.addEventListener('input', (e) => {
+                    if (currentSection === 'mcp') {
+                        searchTerm = e.target.value;
+                        renderMcpServers();
+                    }
+                });
+            }
 
             // Category filter for tools
             document.getElementById('categoriesContainer').addEventListener('click', (e) => {
@@ -386,6 +490,211 @@
                     renderLearningResources();
                 }
             });
+
+            // Category filter for MCP
+            const mcpCat = document.getElementById('mcpCategoriesContainer');
+            if (mcpCat) {
+                mcpCat.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('category-pill') && currentSection === 'mcp') {
+                        document.querySelectorAll('#mcpCategoriesContainer .category-pill').forEach(pill => {
+                            pill.classList.remove('active');
+                        });
+                        e.target.classList.add('active');
+                        currentCategory = e.target.dataset.category;
+                        renderMcpServers();
+                    }
+                });
+            }
+        }
+
+        // =====================
+        // Admin Setup & Handlers
+        // =====================
+        function setupAdmin() {
+            const datasetSelect = document.getElementById('adminDatasetSelect');
+            const openBtn = document.getElementById('adminOpenBtn');
+            const saveBtn = document.getElementById('adminSaveBtn');
+            const downloadBtn = document.getElementById('adminDownloadBtn');
+            const form = document.getElementById('adminForm');
+
+            if (!datasetSelect || !openBtn || !saveBtn || !downloadBtn || !form) return;
+
+            datasetSelect.addEventListener('change', (e) => {
+                currentDataset = e.target.value;
+                showAdminFieldsForDataset(currentDataset);
+                updateAdminPreview();
+            });
+
+            openBtn.addEventListener('click', async () => {
+                await openJsonFile(currentDataset);
+            });
+
+            saveBtn.addEventListener('click', async () => {
+                await saveDatasetToFile(currentDataset);
+            });
+
+            downloadBtn.addEventListener('click', () => {
+                downloadDatasetJson(currentDataset);
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('adminName').value.trim();
+                const icon = document.getElementById('adminIcon').value.trim() || '✨';
+                const link = document.getElementById('adminLink').value.trim();
+                const category = document.getElementById('adminCategory').value.trim() || 'misc';
+                const description = document.getElementById('adminDescription').value.trim();
+
+                if (!name || !link || !description) {
+                    setAdminStatus('Please fill in required fields (name, link, description).');
+                    return;
+                }
+
+                if (currentDataset === 'tools') {
+                    const pricing = document.getElementById('adminPricing').value;
+                    const pricingNote = document.getElementById('adminPricingNote').value.trim();
+                    const favourite = document.getElementById('adminFavourite').value;
+                    aiTools.push({ name, icon, link, description, pricing, pricingNote, category, personal_favourite: favourite });
+                    renderCategories();
+                    renderFavorites();
+                    renderAllTools();
+                    updateStats();
+                } else if (currentDataset === 'learn') {
+                    const difficulty = document.getElementById('adminDifficulty').value;
+                    const type = document.getElementById('adminType').value.trim() || 'article';
+                    learningResources.push({ name, icon, link, description, category, difficulty, type });
+                    renderLearnCategories();
+                    renderLearningResources();
+                } else if (currentDataset === 'mcp') {
+                    const pricing = document.getElementById('adminPricing').value;
+                    mcpServers.push({ name, icon, link, description, category, pricing, personal_favourite: 'no' });
+                    renderMcpCategories();
+                    renderMcpServers();
+                }
+
+                form.reset();
+                setAdminStatus('Item added (not yet saved to disk).');
+                updateAdminPreview();
+            });
+
+            showAdminFieldsForDataset(currentDataset);
+            updateAdminPreview();
+        }
+
+        function showAdminFieldsForDataset(dataset) {
+            const toolFields = document.querySelectorAll('.admin-fields-tools');
+            const learnFields = document.querySelectorAll('.admin-fields-learn');
+            const mcpFields = document.querySelectorAll('.admin-fields-mcp');
+
+            toolFields.forEach(el => el.style.display = (dataset === 'tools') ? '' : (el.tagName === 'DIV' ? 'none' : 'none'));
+            learnFields.forEach(el => el.style.display = (dataset === 'learn') ? '' : 'none');
+            mcpFields.forEach(el => el.style.display = (dataset === 'mcp') ? '' : (el.tagName === 'DIV' ? 'none' : 'none'));
+        }
+
+        function updateAdminPreview() {
+            const preview = document.getElementById('adminPreview');
+            if (!preview) return;
+            let data = [];
+            if (currentDataset === 'tools') data = aiTools;
+            if (currentDataset === 'learn') data = learningResources;
+            if (currentDataset === 'mcp') data = mcpServers;
+
+            const sample = data.slice(-3);
+            const summary = `Items: ${data.length}`;
+            const code = JSON.stringify(sample, null, 2);
+            preview.innerHTML = `<div class="admin-summary">${summary}</div><pre class="admin-code">${escapeHtml(code)}</pre>`;
+        }
+
+        function escapeHtml(str) {
+            return str
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;');
+        }
+
+        async function openJsonFile(dataset) {
+            try {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.json,application/json';
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.click();
+                await new Promise(resolve => input.onchange = resolve);
+                const file = input.files && input.files[0];
+                input.remove();
+                if (!file) return;
+                const text = await file.text();
+                const json = JSON.parse(text);
+                if (!Array.isArray(json)) throw new Error('Invalid JSON format: expected an array');
+                if (dataset === 'tools') aiTools = json;
+                if (dataset === 'learn') learningResources = json;
+                if (dataset === 'mcp') mcpServers = json;
+                if (dataset === 'tools') { renderCategories(); renderFavorites(); renderAllTools(); updateStats(); }
+                if (dataset === 'learn') { renderLearnCategories(); renderLearningResources(); }
+                if (dataset === 'mcp') { renderMcpCategories(); renderMcpServers(); }
+                setAdminStatus('JSON loaded from file.');
+                updateAdminPreview();
+            } catch (err) {
+                console.error(err);
+                setAdminStatus('Failed to open JSON file.');
+            }
+        }
+
+        async function saveDatasetToFile(dataset) {
+            try {
+                const supportsFS = 'showSaveFilePicker' in window;
+                const fileName = dataset === 'tools' ? 'tools.json' : (dataset === 'learn' ? 'learning.json' : 'mcp.json');
+                const data = dataset === 'tools' ? aiTools : (dataset === 'learn' ? learningResources : mcpServers);
+                const content = JSON.stringify(data, null, 4);
+
+                if (supportsFS) {
+                    const handle = await window.showSaveFilePicker({
+                        suggestedName: fileName,
+                        types: [{ description: 'JSON Files', accept: { 'application/json': ['.json'] } }]
+                    });
+                    const writable = await handle.createWritable();
+                    await writable.write(content);
+                    await writable.close();
+                    setAdminStatus('Saved to disk.');
+                } else {
+                    // Fallback to download
+                    const blob = new Blob([content], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = fileName;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    URL.revokeObjectURL(url);
+                    setAdminStatus('Downloaded JSON file.');
+                }
+            } catch (err) {
+                console.error(err);
+                setAdminStatus('Failed to save file.');
+            }
+        }
+
+        function downloadDatasetJson(dataset) {
+            const fileName = dataset === 'tools' ? 'tools.json' : (dataset === 'learn' ? 'learning.json' : 'mcp.json');
+            const data = dataset === 'tools' ? aiTools : (dataset === 'learn' ? learningResources : mcpServers);
+            const content = JSON.stringify(data, null, 4);
+            const blob = new Blob([content], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            setAdminStatus('Downloaded JSON file.');
+        }
+
+        function setAdminStatus(text) {
+            const el = document.getElementById('adminStatus');
+            if (el) el.textContent = text;
         }
 
         // Initialize app when DOM is loaded
